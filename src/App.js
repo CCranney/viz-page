@@ -3,7 +3,7 @@ import { Container } from 'react-bootstrap';
 import './App.css';
 import { VizCard } from './components/VizCard';
 import * as d3 from "d3";
-import { ScatterPlotChart } from './components/ScatterPlotChart';
+import { ScatterPlotChart } from './components/scatter-plot/ScatterPlotChart';
 
 function App() {
 
@@ -32,14 +32,14 @@ function App() {
 
 
   return (
-    <Container>
-        <h1 className="mt-3 text-center">Visuals</h1>
-        <div className='viz-container'>
-          {visuals.map((visual, i) => (
-            <VizCard key={visual.name} name={visual.name} visual={visual.visual} i={i} />
-          ))}
-        </div>
-    </Container>
+    <>
+      <h1 className="mt-3 text-center">Visuals</h1>
+      <div className='viz-container'>
+        {visuals.map((visual, i) => (
+          <VizCard key={visual.name} name={visual.name} visual={visual.visual} i={i} />
+        ))}
+      </div>
+    </>
   );
   
 }

@@ -1,9 +1,16 @@
 import React, { useEffect, useRef } from 'react'
+
 import * as d3 from "d3";
 import './ScatterPlotChart.css'
+import { useSelector, useDispatch } from 'react-redux';
+import { activateTooltip, deactivateTooltip } from '../../store/slices/tooltipSlice';
+import { Tooltip } from '../Tooltip';
 
 export const ScatterPlotChart = ({dataset}) => {
 
+    const tooltipInfo = useSelector(state => state.tooltip);
+    const dispatch = useDispatch();  
+  
     const svgWidth = 500;
     const svgHeight = 400;
     const margin = 100;
@@ -27,7 +34,6 @@ export const ScatterPlotChart = ({dataset}) => {
             .style('font-size', 20)
             .text('Scatter Plot');
         
-        // X label
         svgElement.append('text')
             .attr('x', vizWidth/2 + margin*0.5)
             .attr('y', vizHeight - 15 + margin)
@@ -36,7 +42,6 @@ export const ScatterPlotChart = ({dataset}) => {
             .style('font-size', 12)
             .text('Marks Obtained');
         
-        // Y label
         svgElement.append('text')
             .attr('text-anchor', 'middle')
             .attr('transform', `translate(${margin * 0.25},${vizHeight-margin})rotate(-90)`)
@@ -53,7 +58,7 @@ export const ScatterPlotChart = ({dataset}) => {
         g.append("g")
             .call(d3.axisLeft(yScale));
     
-    })
+    }, [])
 
     const allCircles = dataset.map((d,i) => {
 
@@ -64,18 +69,40 @@ export const ScatterPlotChart = ({dataset}) => {
                 cy={yScale(d.numStudents)}
                 className={'scatterplotCircle'}
                 transform={`translate(${margin*0.5},${margin*0.5})`}
+                onMouseEnter={() => 
+                    dispatch(activateTooltip({
+                        x:xScale(d.marksObtained) + margin*0.5,
+                        y:yScale(d.numStudents) + margin*0.5,
+                        tooltipString: `marks ${d.marksObtained}, students ${d.numStudents}`
+                    }))}
+                onMouseLeave={() => dispatch(deactivateTooltip())}
                 r="6"
         />);
         })
 
     return (
+    <>
         <svg 
             ref={ref}
             style={{
-                height:svgHeight,
                 width:svgWidth,
+                height:svgHeight,
             }}
         >
-        {allCircles}
-        </svg>  )
+            {allCircles}
+        </svg> 
+        <div
+        style={{
+            width:svgWidth,
+            height:svgHeight,
+            position: "absolute",
+            top: 0,
+            left: 0,
+            pointerEvents: "none",
+        }}
+        >  
+            <Tooltip tooltipInfo={tooltipInfo}/>
+        </div> 
+    </>
+    )
 }
