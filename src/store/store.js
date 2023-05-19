@@ -1,8 +1,8 @@
 import { configureStore } from '@reduxjs/toolkit';
-import fillerReducer from './slices/fillerSlice';
+import visibilityReducer from './slices/visibilitySlice';
 
 export const store = configureStore({
   reducer: {
-    filler: fillerReducer
+    visibility: visibilityReducer
   },
 });

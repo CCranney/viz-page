@@ -36,7 +36,7 @@ function App() {
         <h1 className="mt-3 text-center">Visuals</h1>
         <div className='viz-container'>
           {visuals.map((visual, i) => (
-            <VizCard key={visual.name} name={visual.name} visual={visual.visual} />
+            <VizCard key={visual.name} name={visual.name} visual={visual.visual} i={i} />
           ))}
         </div>
     </Container>

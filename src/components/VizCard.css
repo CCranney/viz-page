@@ -1,0 +1,4 @@
+.viz-card {
+    user-select: none;
+    cursor: pointer;
+}
