@@ -1,58 +1,47 @@
-import React from 'react';
-import logo from './logo.svg';
-import { Counter } from './features/counter/Counter';
+import React, { useEffect, useState } from 'react';
+import { Container } from 'react-bootstrap';
 import './App.css';
+import { VizCard } from './components/VizCard';
+import * as d3 from "d3";
+import { ScatterPlotChart } from './components/ScatterPlotChart';
 
 function App() {
+
+  const [data, setData] = useState([]);
+
+  const row = d => {
+    d.numStudents = +d.numStudents;
+    d.marksObtained = +d.marksObtained;
+    return d;
+  }
+
+  useEffect(() => {
+    d3.csv('/data/students.csv', row).then(setData);
+  }, [])
+
+  const visuals = [
+    {
+      name: "Bar Chart",
+      visual: (<div className='demo'>BarChart</div> )
+    },
+    {
+      name: "Scatter Plot Chart",
+      visual: (<ScatterPlotChart dataset={data}/> )
+    }
+  ]
+
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <Counter />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <span>
-          <span>Learn </span>
-          <a
-            className="App-link"
-            href="https://reactjs.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux
-          </a>
-          <span>, </span>
-          <a
-            className="App-link"
-            href="https://redux-toolkit.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Redux Toolkit
-          </a>
-          ,<span> and </span>
-          <a
-            className="App-link"
-            href="https://react-redux.js.org/"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            React Redux
-          </a>
-        </span>
-      </header>
-    </div>
+    <Container>
+        <h1 className="mt-3 text-center">Visuals</h1>
+        <div className='viz-container'>
+          {visuals.map((visual, i) => (
+            <VizCard key={visual.name} name={visual.name} visual={visual.visual} />
+          ))}
+        </div>
+    </Container>
   );
+  
 }
 
 export default App;
