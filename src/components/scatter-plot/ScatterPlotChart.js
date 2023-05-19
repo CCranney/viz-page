@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 import * as d3 from "d3";
 import './ScatterPlotChart.css'
@@ -6,7 +6,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { activateTooltip, deactivateTooltip } from '../../store/slices/tooltipSlice';
 import { Tooltip } from '../Tooltip';
 
-export const ScatterPlotChart = ({dataset}) => {
+export const ScatterPlotChart = () => {
+
+    const [data, setData] = useState([]);
+
+    const row = d => {
+      d.numStudents = +d.numStudents;
+      d.marksObtained = +d.marksObtained;
+      return d;
+    }
+  
+    useEffect(() => {
+      d3.csv('/data/students.csv', row).then(setData);
+    }, [])
+  
 
     const tooltipInfo = useSelector(state => state.tooltip);
     const dispatch = useDispatch();  
@@ -18,10 +31,10 @@ export const ScatterPlotChart = ({dataset}) => {
     const vizWidth = svgWidth - margin;
     const ref = useRef();
     const xScale = d3.scaleLinear()
-        .domain([0, d3.max(dataset.map(d => d.marksObtained))])
+        .domain([0, d3.max(data.map(d => d.marksObtained))])
         .range([0, vizWidth])
     const yScale = d3.scaleLinear()
-        .domain([0, d3.max(dataset.map(d => d.numStudents))])
+        .domain([0, d3.max(data.map(d => d.numStudents))])
         .range([vizHeight, 0])
 
     useEffect(() => {
@@ -58,9 +71,9 @@ export const ScatterPlotChart = ({dataset}) => {
         g.append("g")
             .call(d3.axisLeft(yScale));
     
-    }, [])
+    }, [data])
 
-    const allCircles = dataset.map((d,i) => {
+    const allCircles = data.map((d,i) => {
 
         return (
             <circle

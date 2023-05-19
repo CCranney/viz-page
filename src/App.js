@@ -1,23 +1,8 @@
-import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import './App.css';
 import { VizCard } from './components/VizCard';
-import * as d3 from "d3";
 import { ScatterPlotChart } from './components/scatter-plot/ScatterPlotChart';
 
 function App() {
-
-  const [data, setData] = useState([]);
-
-  const row = d => {
-    d.numStudents = +d.numStudents;
-    d.marksObtained = +d.marksObtained;
-    return d;
-  }
-
-  useEffect(() => {
-    d3.csv('/data/students.csv', row).then(setData);
-  }, [])
 
   const visuals = [
     {
@@ -26,7 +11,7 @@ function App() {
     },
     {
       name: "Scatter Plot Chart",
-      visual: (<ScatterPlotChart dataset={data}/> )
+      visual: (<ScatterPlotChart /> )
     }
   ]
 
