@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, CardBody } from 'reactstrap'
 import { useDispatch, useSelector } from 'react-redux';
 import { changeVisibility } from '../store/slices/visibilitySlice';
-
+import { deactivateTooltip } from '../store/slices/tooltipSlice';
 import './VizCard.css'
 
 export const VizCard = ({ name, visual, i }) => {
@@ -12,6 +12,8 @@ export const VizCard = ({ name, visual, i }) => {
   return (
     <Card className='viz-card' onClick={() => {
       dispatch(changeVisibility(i));
+      dispatch(deactivateTooltip());
+
     }}>
         <CardBody>
             {seenVisual}
