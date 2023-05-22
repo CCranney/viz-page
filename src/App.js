@@ -1,45 +1,42 @@
-import React, { useEffect, useState } from 'react';
-import { Container } from 'react-bootstrap';
 import './App.css';
 import { VizCard } from './components/VizCard';
-import * as d3 from "d3";
-import { ScatterPlotChart } from './components/ScatterPlotChart';
+import { ScatterPlotChart } from './components/scatter-plot/ScatterPlotChart';
+import { BarChart } from './components/bar/BarChart';
 
 function App() {
 
-  const [data, setData] = useState([]);
-
-  const row = d => {
-    d.numStudents = +d.numStudents;
-    d.marksObtained = +d.marksObtained;
-    return d;
-  }
-
-  useEffect(() => {
-    d3.csv('/data/students.csv', row).then(setData);
-  }, [])
-
   const visuals = [
     {
-      name: "Bar Chart",
-      visual: (<div className='demo'>BarChart</div> )
+      name: "Scatter Plot",
+      visual: (<ScatterPlotChart /> ),
+      linkText: 'Resource Unavailable',
+      link: ''
     },
+
     {
-      name: "Scatter Plot Chart",
-      visual: (<ScatterPlotChart dataset={data}/> )
-    }
+      name: "Bar Plot",
+      visual: (<BarChart /> ),
+      linkText: 'Pew Research',
+      link: 'https://www.pewresearch.org/religion/dataset/american-trends-panel-wave-24/'
+    },
   ]
 
 
   return (
-    <Container>
-        <h1 className="mt-3 text-center">Visuals</h1>
-        <div className='viz-container'>
-          {visuals.map((visual, i) => (
-            <VizCard key={visual.name} name={visual.name} visual={visual.visual} />
-          ))}
-        </div>
-    </Container>
+    <>
+      <h1 className="mt-3 text-center">Visuals</h1>
+      <div className='viz-container'>
+        {visuals.map((visual, i) => (
+          <VizCard 
+            key={visual.name} 
+            name={visual.name} 
+            visual={visual.visual} 
+            i={i}
+            linkText={visual.linkText}
+            link={visual.link} />
+        ))}
+      </div>
+    </>
   );
   
 }
