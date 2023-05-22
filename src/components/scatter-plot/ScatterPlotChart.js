@@ -5,6 +5,7 @@ import './ScatterPlotChart.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { activateTooltip, deactivateTooltip } from '../../store/slices/tooltipSlice';
 import { Tooltip } from '../Tooltip';
+import { CardFooter } from 'reactstrap';
 
 export const ScatterPlotChart = () => {
 
@@ -85,7 +86,7 @@ export const ScatterPlotChart = () => {
                 onMouseEnter={() => 
                     dispatch(activateTooltip({
                         x:xScale(d.marksObtained) + margin*0.5,
-                        y:yScale(d.numStudents) + margin*0.5,
+                        y:yScale(d.numStudents) + margin*0.75,
                         tooltipString: `marks ${d.marksObtained}, students ${d.numStudents}`
                     }))}
                 onMouseLeave={() => dispatch(deactivateTooltip())}
