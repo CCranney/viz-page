@@ -3,6 +3,7 @@ import { VizCard } from './components/VizCard';
 import { ScatterPlotChart } from './components/scatter-plot/ScatterPlotChart';
 import { BarChart } from './components/bar/BarChart';
 import { StackedBarChartSimple } from './components/stacked-bar/StackedBarChartSimple';
+import { StackedBarChart } from './components/stacked-bar/StackedBarChart';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
     },
     {
       name: "Stacked Bar Plot",
-      visual: (<div>Stacked Bar Plot</div> ),
+      visual: (<StackedBarChart /> ),
       linkText: 'Pew Research',
       link: 'https://www.pewresearch.org/religion/dataset/american-trends-panel-wave-70/'
     },

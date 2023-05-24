@@ -21,7 +21,7 @@ export const StackedBarChartSimple = () => {
     const vizWidth = 400;
     const vizHeight = 300;
     const margin = { top: 50, right: 50, bottom: 50, left: 50 };
-    const idHeader = 'stacked-barchart';
+    const idHeader = 'stacked-barchart-simple';
 
     const ref = useD3(
         (svg) => {
@@ -55,17 +55,15 @@ export const StackedBarChartSimple = () => {
                 var stackedData = d3.stack()
                     .keys(subgroups)
                     (data);
-
+                console.log(data);
+                console.log(stackedData);
                 const newBars = stackedData.map((subgroup, i) => {
-                    console.log(`-->${subgroup.key}`)
                     return(
                     <g 
                         key={i}
                         fill={colorScale(subgroup.key)}
                     >
                         {subgroup.map((group, j) => {
-                            console.log(group[0]-group[1])
-                            console.log(yScale(group[0]-group[1]))
                             return (
                                 <rect
                                     key={j}
@@ -80,8 +78,6 @@ export const StackedBarChartSimple = () => {
                     </g>
                 )})
                 setBars(newBars);
-
-                console.log(stackedData);
             }                
         }, [loading])
 
