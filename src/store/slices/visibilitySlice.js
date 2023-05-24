@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 
-const initialState = Array(2).fill(false);
+const initialState = Array(3).fill(false);
 
 const visibilitySlice = createSlice({
     name: 'visibility',

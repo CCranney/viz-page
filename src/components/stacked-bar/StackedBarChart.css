@@ -1,0 +1,9 @@
+.highlighted {
+    opacity: 1;
+    fill-opacity: 1;
+}
+
+.faded {
+    fill-opacity: .3;
+
+}
