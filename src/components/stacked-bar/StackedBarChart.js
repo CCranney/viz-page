@@ -1,7 +1,7 @@
 import * as d3 from "d3";
 import { useD3 } from '../../hooks/useD3'
 import { initializeXYGraph } from '../../hooks/initializeXYGraph'
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import './StackedBarChart.css'
 
 export const StackedBarChart = () => {

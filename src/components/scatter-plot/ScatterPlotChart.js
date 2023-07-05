@@ -70,7 +70,7 @@ export const ScatterPlotChart = () => {
         g.append("g")
             .call(d3.axisLeft(yScale));
     
-    }, [data])
+    }, [data, vizHeight, vizWidth, xScale, yScale])
 
     const allCircles = data.map((d,i) => {
 
