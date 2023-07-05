@@ -12,7 +12,7 @@ export const VizCard = ({ name, visual, i, linkText, link }) => {
   const seenDataLink = isVisible ? 
     (
       <CardFooter>
-        data from <a href={link} target='_blank'>{linkText}</a>
+        data from <a href={link} target='_blank' rel="noreferrer">{linkText}</a>
       </CardFooter> 
     ) : null;
 

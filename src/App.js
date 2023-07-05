@@ -4,6 +4,7 @@ import { ScatterPlotChart } from './components/scatter-plot/ScatterPlotChart';
 import { BarChart } from './components/bar/BarChart';
 import { StackedBarChartSimple } from './components/stacked-bar/StackedBarChartSimple';
 import { StackedBarChart } from './components/stacked-bar/StackedBarChart';
+import { DendrogramChart } from './components/dendrogram/DendrogramChart';
 
 function App() {
 
@@ -31,6 +32,12 @@ function App() {
       visual: (<StackedBarChart /> ),
       linkText: 'Pew Research',
       link: 'https://www.pewresearch.org/religion/dataset/american-trends-panel-wave-70/'
+    },
+    {
+      name: "Dendrogram",
+      visual: (<DendrogramChart /> ),
+      linkText: 'Kaggle',
+      link: 'https://www.kaggle.com/datasets/konivat/tree-of-life?resource=download'
     },
   ]
 
