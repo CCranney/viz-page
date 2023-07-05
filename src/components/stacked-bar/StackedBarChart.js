@@ -53,7 +53,7 @@ export const StackedBarChart = () => {
       }
   
     useEffect(() => {
-        d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/dendrogram/public/data/coping.csv', row).then((d) => {
+        d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/main/public/data/coping.csv', row).then((d) => {
 
             const initialGroupValues = {
                 'Daily':0,

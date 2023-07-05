@@ -19,7 +19,7 @@ export const BarChart = () => {
   const row = d => d.LIFE1_W24;
 
   useEffect(() => {
-    d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/dendrogram/public/data/life_satisfaction.csv', row).then(setData);
+    d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/main/public/data/life_satisfaction.csv', row).then(setData);
   }, [])
 
   useEffect(() => {
