@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import * as d3 from "d3";
 import './BarChart.css'
-import { CardFooter } from 'reactstrap';
 
 export const BarChart = () => {
 

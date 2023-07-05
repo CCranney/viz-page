@@ -5,7 +5,6 @@ import './ScatterPlotChart.css'
 import { useSelector, useDispatch } from 'react-redux';
 import { activateTooltip, deactivateTooltip } from '../../store/slices/tooltipSlice';
 import { Tooltip } from '../Tooltip';
-import { CardFooter } from 'reactstrap';
 
 export const ScatterPlotChart = () => {
 
@@ -18,9 +17,8 @@ export const ScatterPlotChart = () => {
     }
   
     useEffect(() => {
-      d3.csv('/data/students.csv', row).then(setData);
-    }, [])
-  
+      d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/main/public/data/students.csv', row).then(setData);
+    }, [])  
 
     const tooltipInfo = useSelector(state => state.tooltip);
     const dispatch = useDispatch();  

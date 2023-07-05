@@ -55,8 +55,6 @@ export const StackedBarChartSimple = () => {
                 var stackedData = d3.stack()
                     .keys(subgroups)
                     (data);
-                console.log(data);
-                console.log(stackedData);
                 const newBars = stackedData.map((subgroup, i) => {
                     return(
                     <g 

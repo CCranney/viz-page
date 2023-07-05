@@ -6,6 +6,7 @@ export const DendrogramChart = () => {
     const [data, setData] = useState([]);
     const [isLoading, setLoading] = useState(true);
 
+    /*
     useEffect(() => {
         d3.csv('/data/dendrogram/treeoflife_links.csv').then((d) => {
             console.log(d);
@@ -19,7 +20,7 @@ export const DendrogramChart = () => {
             setLoading(false);
         });
     }, [])
-
+    */
 
 
     return (
