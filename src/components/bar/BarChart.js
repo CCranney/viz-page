@@ -24,7 +24,8 @@ export const BarChart = () => {
 
   useEffect(() => {
     count.current = data.reduce((acc, curr) => {
-      return acc[curr] ? ++acc[curr] : acc[curr] = 1, acc
+      acc[curr] ? ++acc[curr] : acc[curr] = 1
+      return acc
     }, {})
   }, [data])
 
@@ -110,9 +111,10 @@ var g = svgElement.append("g")
     d3.select('#y-axis')
         .call(d3.axisLeft(yScale));
 
-}, [data])
+}, [data, vizHeight, vizWidth, xScale, yScale])
 
-const allRects = orderedKeys.map((d, i) => 
+
+const allRects = Object.keys(count.current).length === 0 ? <rect></rect> : orderedKeys.map((d, i) => 
     (
 
       <rect 
@@ -128,7 +130,6 @@ const allRects = orderedKeys.map((d, i) =>
           setClickedArray(tempIsClickedArray);
         }}
       />
-
     )
   )
 
