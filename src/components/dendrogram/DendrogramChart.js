@@ -8,7 +8,7 @@ export const DendrogramChart = () => {
 
     /*
     useEffect(() => {
-        d3.csv('/data/dendrogram/treeoflife_links.csv').then((d) => {
+        d3.csv('https://raw.githubusercontent.com/CCranney/viz-page/dendrogram/public/data/treeoflife_links.csv').then((d) => {
             console.log(d);
             const hierarchyGenerator = d3.stratify()
                 .id((node) => node.target_node_id)
